@@ -1,0 +1,307 @@
+@mixin form_default {
+    border-radius: 10px;
+    border: 1px solid $color_brown;
+    padding: 8px 15px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    color: $color_brown;
+
+    &:focus {
+        border-radius: 10px;
+        border: 1px solid $color_blue;
+        outline: none;
+    }
+}
+
+.form {
+    position: relative;
+    z-index: 2;
+    background-image: url(../img/bg_paper.png);
+    width: 700px;
+    max-width: 92%;
+    border-radius: 5px;
+    padding: 30px 30px 0px 30px;
+    text-align: left;
+    box-shadow: 0 0 20px $dark_opacity;
+
+    label {
+        color: lighten($color_brown, 10%);
+        font-size: $font_size;
+        margin-bottom: 10px;
+        margin-left: 8px;
+        margin-right: 8px;
+        display: inline-block;
+    }
+
+    input {
+        @include form_default;
+    }
+
+    textarea {
+        @include form_default;
+    }
+
+    select {
+        @include form_default;
+        border: 0px;
+        border-radius: 10px;
+        outline: none;
+        height: 34px;
+        background: transparent;
+    }
+
+    .select {
+        @include form_default;
+        padding: 0;
+    }
+
+    &__progress {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: .3s ease;
+
+        .degree {
+            content: '';
+            position: absolute;
+            background: $color_gray_light;
+            height: 30%;
+            width: 100%;
+            left: 0;
+            top: 35%;
+            border-radius: 10px;
+            z-index: 0;
+
+            em {
+                position: absolute;
+                width: 0;
+                left: 0;
+                top: 35%;
+                height: 30%;
+                background: $color_orange;
+                border-radius: 10px;
+                transition: .3s ease;
+            }
+        }
+
+        span {
+            font-family: $font_en;
+            color: darken($color_gray_light, 10%);
+            position: relative;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1;
+            display: flex;
+            height: 40px;
+            width: 40px;
+            border-radius: 100%;
+            border: 3px solid $color_gray_light;
+            background: #fff;
+            align-items: center;
+            justify-content: center;
+            font-size: $font_size_sm;
+            transition: .3s ease;
+
+            &.active {
+                background: $color_orange;
+                color: #fff;
+            }
+
+            input {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                z-index: 9;
+                border: 0;
+                -webkit-appearance: none;
+                transition: .3s ease;
+                background: transparent !important;
+                border-radius: 100%;
+
+                &:checked {
+                    transition: .3s ease;
+                }
+
+                &:focus {
+                    border: 0;
+                    background: transparent !important;
+                }
+            }
+        }
+    }
+
+    &__btn {
+        font-family: $font_en;
+        letter-spacing: 2px;
+        position: relative;
+        top: 40px;
+        cursor: pointer;
+        background: $color_orange;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: #fff;
+        margin: 0 auto;
+        font-weight: bold;
+        box-shadow: -4px 4px 0 darken($color_orange, 40%);
+        border: 3px solid lighten($color_orange, 10%);
+        transition: .3s ease;
+
+        &:hover {
+            box-shadow: -3px 3px 0 darken($color_orange, 40%);
+            transform: translateX(-1px) translateY(1px);
+        }
+
+        &:active {
+            box-shadow: none;
+            transform: translateX(-3px) translateY(3px);
+            box-shadow: 0 0 3px $dark_opacity;
+            color: lighten($color_orange, 40%);
+        }
+    }
+
+    &__group {
+        margin-bottom: 20px;
+
+        .target {
+            background: rgb(26, 41, 44);
+            padding: 20px;
+            color: #fff;
+            border-radius: 7px;
+        }
+
+        &--warning:after {
+            content: '請輸入內容';
+            color: $color_orange;
+            font-size: $font_size_sm;
+            padding-left: 8px;
+            font-weight: bold;
+        }
+
+        &--warning input {
+            border: 1px solid $color_orange;
+        }
+
+    }
+
+    .searchDate_box {
+        position: relative;
+        input {
+            cursor: pointer;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            bottom: 8px;
+            height: 20px;
+            width: 20px;
+            background: url(../img/calendar.png);
+            background-size: 20px;
+            pointer-events: none;
+        }
+    }
+
+    &__img {
+        display: flex;
+        justify-content: space-between;
+
+        &:nth-child(1) {
+            padding-right: 1%;
+        }
+
+        @include mobile {
+            justify-content: space-between;
+
+            &:nth-child(2) {
+                margin-bottom: -30px;
+            }
+        }
+
+        img {
+            width: 50px;
+            margin-bottom: 5px;
+            opacity: .6;
+            filter: grayscale(1);
+
+            @include mobile {
+                width: 30px;
+            }
+        }
+
+        .form__group {
+            position: relative;
+            width: 49%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-emphasis: center;
+            padding: 10px 10px 5px 10px;
+            text-align: center;
+            cursor: pointer;
+
+            @include mobile {
+                width: 49%;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .classDate--notice {
+                animation: notice .8s 3 ease;
+            }
+
+            label {
+                width: auto;
+                font-weight: bold;
+            }
+        }
+
+        input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            cursor: pointer;
+            z-index: 9;
+            border: 0;
+            -webkit-appearance: none;
+            transition: .3s ease;
+            background: transparent !important;
+
+            &:checked {
+                transition: .3s ease;
+
+                ~label {
+                    color: $color_orange;
+                    transition: .3s ease;
+                }
+
+                ~img {
+                    opacity: 1;
+                    transition: .3s ease;
+                    filter: none;
+                }
+            }
+
+            &:focus {
+                border: 0;
+                background: transparent !important;
+            }
+        }
+    }
+
+    @include mobile {
+        padding: 30px 10px 0px 15px;
+    }
+}

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
+$font:'Noto Sans TC', '微軟正黑體',sans-serif;
+$font_en:'Fredoka One', cursive;
+$font_size: 14px;
+$font_size_sm: $font_size *0.9;
+$color_brown: #7E735D;
+$color_orange: #F66432;
+$color_blue: #52ACEA;
+$color_dark: #1a292c;
+$color_blue_light: #73FEC9;
+$color_gray_light: #e0e0e0;
+$dark_opacity: rgba(0, 0, 0, .15);
+@mixin sm {
+    @media(max-width:991px) {
+        @content;
+    }
+}
+@mixin pad {
+    @media(max-width:768px) {
+        @content;
+    }
+}
+@mixin mobile {
+    @media(max-width:500px) {
+        @content;
+    }
+}
+@mixin height_sm {
+    @media(max-height:600px) {
+        @content;
+    }
+}
+@keyframes notice {
+    0% {
+        border: 1px solid #afa592;
+    }
+    50% {
+        border: 1px solid red;
+    }
+    100% {
+        border: 1px solid #afa592;
+    }
+}

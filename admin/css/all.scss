@@ -1,0 +1,253 @@
+@import "variable";
+@import "datepicker.min";
+@import "normalize";
+@import "keyframe";
+@import "form";
+
+* {
+    webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    color: $color_brown;
+    font-size: $font_size;
+    font-family: $font;
+}
+.grecaptcha-badge {
+    display: none!important;
+}
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #18262a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    &.hide {
+        animation: hide_loader forwards .5s ease;
+    }
+    &_img {
+        height: 50px;
+        display: flex;
+        animation: loader 1s ease;
+        align-items: center;
+        .logo_img {
+            position: relative;
+            height: 50px;
+            margin-right: 10px;
+            animation: logo_rocket forwards 1s ease;
+        }
+        .logo_word{
+            height: 30px;
+        }
+    }
+    
+}
+.container {
+    position: relative;
+    background-image: url(../img/moon_full.png), url(../img/bg_star.jpg);
+    background-size: 100%, cover;
+    background-position: bottom -15% center, center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 20px 100px 20px;
+    @include mobile {
+        background-position: bottom center, center;
+        background-attachment: scroll,fixed;
+        padding: 50px 0 150px 0;
+    }
+    // @include height_sm {
+    //     background-position: bottom -10% center, center;
+    // }
+}
+
+.row {
+    display: flex;
+    @include mobile {
+        flex-wrap: wrap;
+    }
+}
+
+.col-6 {
+    width: 50%;
+    flex-wrap: wrap;
+
+    label {
+        width: 100%;
+    }
+    &:first-child {
+        margin-right: .5rem;
+    }
+    @include mobile {
+        width: 100%;
+        &:first-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.logo {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 9;
+    @include mobile {
+        margin-bottom: 30px;
+    }
+    h1 {
+        color: $color_blue_light;
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-shadow: -2px 2px darken($color_blue_light,80%);
+        span {
+            color: #fff;
+        }
+        @include mobile {
+            font-size: 18px;
+        }
+    }
+    img {
+        height: 50px;
+    }
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    // pointer-events: none;
+}
+
+.bgItme {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    z-index: 5;
+    pointer-events: none;
+
+    .moon {
+        position: relative;
+        top: 50px;
+        width: 100%;
+    }
+
+    .man {
+        position: fixed;
+        z-index: -1;
+        top: 10%;
+        left: 10%;
+        width: 130px;
+        animation: man_float 30s linear infinite alternate-reverse;
+
+        @include sm {
+            width: 110px;
+        }
+        @include pad {
+            width: 70px;
+        }
+    }
+
+    .rocket {
+        position: fixed;
+        right: 13%;
+        top: 55%;
+        transform: rotate(10deg) scale(.9);
+        width: 100px;
+        animation: 1.8s forwards linear;
+        @include sm {
+            width: 80px;
+            right: 5%;
+            top: 75%;
+        }
+        @include pad {
+            width: 60px;
+            right: -20%;
+            top: -30%;
+        }
+    }
+}
+
+.sendResult {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    ~a.form__btn {
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    h2 {
+        color: $color_blue;
+        text-shadow: 1px 1px 0 $color_blue_light;
+    }
+
+    p {
+        line-height: 2;
+    }
+
+    .icon_cry img {
+        width: 100px;
+    }
+
+    .icon_cry~h2 {
+        color: $color_orange;
+        text-shadow: 1px 1px 0 $color_brown;
+    }
+
+    .firework {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+
+        img {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            transform: scale(.1);
+
+            &.firework01 {
+                opacity: 0;
+                animation: fire01 10s linear infinite alternate-reverse;
+            }
+
+            &.firework02 {
+                opacity: 0;
+                animation: fire02 10s linear infinite alternate-reverse;
+            }
+        }
+    }
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    color: $color_dark;
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,"Microsoft JhengHei UI","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
