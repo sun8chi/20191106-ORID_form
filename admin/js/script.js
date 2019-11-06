@@ -54,7 +54,6 @@ function getMondayTarget() {
 	var data = `date=${searchDate}%2F7%2F7&name=${searchName}`;
 
 	var xhr = new XMLHttpRequest();
-	// xhr.withCredentials = true;
 	// xhr.addEventListener("readystatechange", function () {
 	// 	if (this.readyState === 4) {
 	// 		console.log(this.responseText);
