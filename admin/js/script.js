@@ -37,7 +37,7 @@ xhr.onload = function () {
 	res.forEach(item => {
 		name.innerHTML += `<option value="${item.Name}">${item.Name}</option>`;
 	});
-	name.addEventListener('change', getMondayTarget, false);
+	// name.addEventListener('change', getMondayTarget, false);
 };
 xhr.send();
 
@@ -46,7 +46,6 @@ let today = new Date();
 today = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`;
 let dateInput = document.querySelector('#searchDate');
 dateInput.value = today;
-
 
 function getMondayTarget() {
 	const searchName = document.querySelector('#name option:checked').value;
@@ -75,10 +74,11 @@ function getMondayTarget() {
 	xhr.withCredentials = false;
 	xhr.setRequestHeader("Accept", "*/*");
 	xhr.setRequestHeader("Cache-Control", "no-cache");
-	
+
 
 	xhr.send(data);
-}
+};
+
 //進度條
 const progress = document.querySelectorAll('.form__progress span');
 const progressInput = document.querySelectorAll('.form__progress input');
@@ -116,58 +116,64 @@ function checkForm() {
 	const strive = CKEDITOR.instances.strive.getData(); // 明日行動
 	const Friday = CKEDITOR.instances.Friday.getData(); // 週五填寫
 
-	console.log(1, name);
-	console.log(2, target);
-	console.log(3, reach);
-	console.log(4, mood);
-	console.log(5, process);
-	console.log(6, sentiment);
-	console.log(7, comprehension);
-	console.log(8, strive);
-	console.log(9, Friday);
+	// console.log(1, name);
+	// console.log(2, target);
+	// console.log(3, reach);
+	// console.log(4, mood);
+	// console.log(5, process);
+	// console.log(6, sentiment);
+	// console.log(7, comprehension);
+	// console.log(8, strive);
+	// console.log(9, Friday);
+	let sendData = {};
 
 	// 驗證表單不是空值
 	// if (num == 0 && emailCheck != '-1' && isPdf == 'pdf' && checkNum != '0') {
 	// 	sendForm();
 	// }
+	sendForm()
 }
 
 //傳送表單
 function sendForm() {
-	//xhr 送資料
+	console.log('傳表單囉');
+	var data = "date=2019%2F10%2F15&name=Chita&target=%E8%BF%BD%E5%8A%87&reach=%E6%99%AE%E9%80%9A&mood=40%25&process=%E7%84%A1&sentiment=%E7%84%A1&comprehension=%E7%84%A1&strive=%E7%84%A1&Friday=%E7%84%A1";
 	const xhr = new XMLHttpRequest();
-	xhr.open('POST', '');
+	xhr.open('POST', 'https://orid.rocket-coding.com/CreateORID.ashx');
+	xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+	xhr.withCredentials = false;
 	xhr.onload = function () {
 		const res = this.responseText;
+		console.log(res);
 		const form = document.querySelector('.form');
-		if (res == 'success') {
-			// 表單成功內容
+		if (res == '成功!') {
+			//表單成功內容
 			form.innerHTML = `
 			<div class="sendResult ">
 				<div class="firework animated tada">
-                    <img class="firework01" src="img/icon_star02.png" alt="">
-                    <img class="firework02" src="img/icon_star01.png" alt="">
-                </div>
-                <h2 class="animated bounceIn">YA!表單送出成功</h2>
-                <p>我們收到您的報名資訊後，<br />會再進行審核，並挑選第一波面試名單，<br />經面試後審核沒問題，<br />符合資格便可加入火箭隊培訓營囉！</p>
-            </div>`;
+		            <img class="firework01" src="admin/img/icon_star02.png" alt="">
+		            <img class="firework02" src="admin/img/icon_star01.png" alt="">
+		        </div>
+		        <h2 class="animated bounceIn">YA!本日表單送出成功</h2>
+				<p>加油加油～</p>
+		    </div>`;
 			document.querySelector('.rocket').style.animationName = 'rocket_fly';
 			document.querySelector('.rocket').style.position = 'absolute';
 		} else {
-			// 表單失敗
+			//表單失敗
 			form.innerHTML = `
 			<div class="sendResult ">
 				<div class="animated tada icon_cry">
-					<img class="firework01" src="img/cry.png" alt="">
+					<img class="firework01" src="admin/img/cry.png" alt="">
 				</div>
 				<h2 class="animated bounceIn">嗚嗚～表單送出失敗</h2>
 				<p>${res}</p>
 			</div>
 			<a href="index.html" class="form__btn">重新填寫</a>
-        `;
+		`;
 		}
 	};
-	xhr.send();
+	xhr.send(data);
 }
 
 
@@ -184,8 +190,8 @@ $(document).ready(function () {
 			onSelect: function (date) {
 				// let thisDate = new Date(date).toLocaleString().split(" ")[0];
 				// showDate(date);
-				getMondayTarget()
-				console.log('切換日曆嚕');
+				// getMondayTarget()
+				// console.log('切換日曆嚕');
 			}
 		});
 	});
